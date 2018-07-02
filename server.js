@@ -10,8 +10,16 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// static file setup
-app.use('/', express.static(path.join(__dirname, 'public')));
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  // Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+} else {
+  app.use('/', express.static(path.join(__dirname, 'public')));
+}
 
 // GET /favorites
 // GETS the information from our servcer (data.json)
@@ -40,9 +48,4 @@ app.post('/favorites', function(req, res) {
 // Set up port at 3001
 app.listen(port, function() {
   console.log("Listening on port " + port);
-});
-
-/* handling 404 */
-app.get('*', function(req, res) {
-  res.status(404).send({message: 'Oops! Not found.'});
 });
