@@ -1,0 +1,81 @@
+@import 'reset';
+
+nav {
+  height: 80px;
+  width: 100%;
+  background: #000;
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    li {
+      color: #FFF;
+      font-size: 32px;
+    }
+    .favorites {
+      font-size: 16px;
+      cursor: pointer;
+      transition: .5s;
+      text-decoration: underline;
+      &:hover {
+        color: skyblue;
+      }
+    }
+  }
+}
+
+
+// ----------FORM----------
+form {
+  border: 1px solid #000;
+  h1 {
+    font-size: 32px;
+  }
+  .search-container {
+    display: flex;
+    input {
+      font-size: 24px;
+    }
+    button {
+      height: 40px;
+      width: 100px;
+      font-size: 18px;
+      background: blue;
+      color: #FFF;
+      box-shadow: 1px -1px #000;
+      border: none;
+    }
+  }
+}
+
+
+// ----------MOVIE ITEMS----------
+.movie-list { 
+  display: flex; 
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+.movie-item {
+  display: inline-block;
+  width: 300px;
+  margin: 0px 6px;
+  h1 {
+    font-size: 24px;
+    margin: 8px 0;
+    font-weight: bold;
+  }
+  .favorite {
+    color: gold;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 6px 0;
+  }
+  img {
+    height: 440px;
+    width: 100%;
+    cursor: pointer;
+  }
+}
