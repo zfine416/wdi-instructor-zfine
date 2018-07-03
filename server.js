@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 // GETS the information from our servcer (data.json)
 app.get('/favorites', function(req, res) {
   var data = fs.readFileSync('./data.json');
-  console.log(data);
+  console.log(res);
   res.setHeader('Content-Type', 'application/json');
   res.send(data);
 });
