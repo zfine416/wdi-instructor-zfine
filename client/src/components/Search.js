@@ -9,6 +9,7 @@ class Search extends Component {
           <input type="text" onChange={ this.props.updateInputValue } value={ this.props.inputValue }/>
           <button>Search</button>  
         </div> 
+        <div className="error"></div>
       </form>
     );
   }

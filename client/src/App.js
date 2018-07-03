@@ -23,17 +23,26 @@ class App extends Component {
     e.preventDefault();
     // Typically it's a good idea to hide your API key!!
 
-    // we use fetch to receive data from an API
-    // Fetch returns a promise
-    // We use promises in JavaScript because it is ansychronous. A promise can be (fulfilled/rejected/pending/settled)
-    fetch(`https://www.omdbapi.com/?s=${ this.state.inputValue }&apikey=b154b97f`)
-    .then(res => res.json())
-    .catch(error => { console.log('Error fetching data', error) })
-    .then((jsonRes) => {
-      // once we have received data back from the server we need to update state
-      // once state is updated the page re-renders
-      this.setState({ activeMovies : jsonRes.Search })
-    })
+    // only search if an input value exist
+    // an empty string is falsy!!
+    if(this.state.inputValue) {
+      // we use fetch to receive data from an API
+      // Fetch returns a promise
+      // We use promises in JavaScript because it is ansychronous. A promise can be (fulfilled/rejected/pending/settled)
+      fetch(`https://www.omdbapi.com/?s=${ this.state.inputValue }&apikey=b154b97f`)
+      .then(res => res.json())
+      .catch(error => { console.log('Error fetching data', error) })
+      .then((jsonRes) => {
+        // once we have received data back from the server we need to update state
+        // once state is updated the page re-renders
+        this.setState({ activeMovies : jsonRes.Search })
+      })
+
+    } else {
+      var errorElement = document.querySelector('.error');
+      errorElement.innerText = 'Please Enter a Movie Name';
+      setTimeout(function() { errorElement.innerText = '' }, 1500);
+    }
   }
 
   getMovieData(e) {
@@ -85,7 +94,7 @@ class App extends Component {
       <div className="App">
         <nav>
           <ul>
-            <li>My Movie App</li>
+            <li><a href="/">My Movie App</a></li>
             <li className="favorites" onClick = { this.viewFavorites }>View Favorites</li>
           </ul>
         </nav>
