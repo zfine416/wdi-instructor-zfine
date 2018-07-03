@@ -26,7 +26,7 @@ class App extends Component {
     // we use fetch to receive data from an API
     // Fetch returns a promise
     // We use promises in JavaScript because it is ansychronous. A promise can be (fulfilled/rejected/pending/settled)
-    fetch(`http://www.omdbapi.com/?s=${ this.state.inputValue }&apikey=b154b97f`)
+    fetch(`https://www.omdbapi.com/?s=${ this.state.inputValue }&apikey=b154b97f`)
     .then(res => res.json())
     .catch(error => { console.log('Error fetching data', error) })
     .then((jsonRes) => {
@@ -46,7 +46,7 @@ class App extends Component {
     } else {
       element.setAttribute('active', 'true');
       // Typically it's a good idea to hide your API key!!
-      fetch(`http://www.omdbapi.com/?i=${ imdbID }&apikey=b154b97f`)
+      fetch(`https://www.omdbapi.com/?i=${ imdbID }&apikey=b154b97f`)
       .then(res => res.json())
       .catch(error => { console.log('Error fetching data', error) })
       .then((jsonRes) => {
